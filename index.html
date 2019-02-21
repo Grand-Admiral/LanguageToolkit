@@ -1,0 +1,361 @@
+
+<head>
+  <style>
+    table, td{
+      border-style:solid;
+      border-width:2px;
+    }
+    canvas {
+      max-width:100%;
+      max-height:100%;
+    }
+    img {
+      width:30px;
+      height:30px;
+    }
+    #keyboard img{
+      width:50px;
+      height:50px;
+      display:inline;
+    }
+    .voweli {
+      width: 10px;
+      height: 30px;
+    }
+    </style>
+
+    <script>
+      //need array for data entered
+    $currentmssg = "";
+
+    function myFunction($value) {
+      //converter to symbol from alpha value
+      if ($value == "u" || $value == "i"){
+        $currentmssg += '<img class="voweli" src=images/'+$value+'.png>';
+      } else {
+        $currentmssg += '<img src=images/'+$value+'.png>';
+      }
+      document.getElementById("output").innerHTML = $currentmssg;
+    }
+
+    function submitTxt() {
+      //a = $txt.split(" ")
+      // a[0] list through all chars find "a", "i", "u" and split after them.
+      //document.getElementById("converter").submit();
+      document.getElementById("toconverttxt").submit();
+    }
+
+// name = name in input form that is in the url
+    function getURLParameter(name) {
+      //return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+      $a = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+      return convertTxt($a);
+    }
+
+//convert the pulled txt into the symbal pairs ready for conversion
+    function convertTxt($txt) {
+      //need a loop to check surrounding characters to see what the symbol will be.
+      $charPairs = [];
+      $txt = $txt.split(" ");
+      //first [] finds the word second [] is a character.
+      // use for loops to then pair the chars and append them to the loop.
+      //return $txt[0][0]; //loop through this split. word by word and char by char
+        for($i = 0; $i < $txt.length;$i++){
+          $charPairs.push($txt[$i]);
+        }
+        return $charPairs[0];
+
+      //return an array with the final pairs in order of their final sets "shasfi" = [sha, s, fi]
+    }
+
+// convert the symbal pairs into the image names and then display them using myFunction()
+    function translateTxt() {
+      // everything originally will translate to a ca then have the u||i placed on after
+
+    }
+
+    </script>
+</head>
+
+<body>
+  <div id = "content">
+    <!--<button onclick="myFunction()">Click me</button>-->
+    <!--<button onclick="saveme()">shoot me</button>-->
+    <h1> Language Writer:</h1>
+    <p id="output">Enter content</p> <!-- output display-->
+
+    <a href= "javascript:window.print()">print</a>
+    </br>
+    </br>
+    <div id="converter">
+      <form>
+        <input type="text" id = "toconverttxt" name="toConvert">
+        <button type="btnConvertTxt" name="button" onclick="submitTxt()">Submit to checker</button>
+        <a href= "javascript:getURLParameter('toConvert')">Convert</a>
+      </form>
+    </div>
+
+    <div id = "keyboard">
+      <!-- space and vowel chars-->
+      <a href= "javascript:myFunction('space')"><img src="images/space.png"></a>
+      <a href= "javascript:myFunction('i')"><img src="images/i.png"></a>
+      <a href= "javascript:myFunction('u')"><img src="images/u.png"></a>
+
+      <table>
+        <tr>
+          <td>
+            <p>Name</p>
+          </td>
+          <td>
+            <p>cv</p>
+          </td>
+          <td>
+            <p>c<p>
+          </td>
+          <td>
+            <p>Name</p>
+          </td>
+          <td>
+            <p>cv</p>
+          </td>
+          <td>
+            <p>c<p>
+          </td>
+          <td>
+            <p>Name</p>
+          </td>
+          <td>
+            <p>cv</p>
+          </td>
+          <td>
+            <p>c<p>
+          </td>
+          <td>
+            <p>Name</p>
+          </td>
+          <td>
+            <p>cv</p>
+          </td>
+          <td>
+            <p>c<p>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <p>m</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('ma')"><img src="images/ma.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('mafin')"><img src="images/mafin.png"></a>
+          </td>
+          <td>
+            <p>n</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('na')"><img src="images/na.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('nafin')"><img src="images/nafin.png"></a>
+          </td>
+          <td>
+            <p>ɲ|ny</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('nya')"><img src="images/nya.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('nyafin')"><img src="images/nyafin.png"></a>
+          </td>
+          <td>
+            <p>p</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('pa')"><img src="images/pa.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('pafin')"><img src="images/pafin.png"></a>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td>
+            <p>t</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('ta')"><img src="images/ta.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('tafin')"><img src="images/tafin.png"></a>
+          </td>
+          <td>
+            <p>k</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('ka')"><img src="images/ka.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('kafin')"><img src="images/kafin.png"></a>
+          </td>
+          <td>
+            <p>s</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('sa')"><img src="images/sa.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('safin')"><img src="images/safin.png"></a>
+          </td>
+          <td>
+            <p>z</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('za')"><img src="images/za.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('zafin')"><img src="images/zafin.png"></a>
+          </td>
+        </tr>
+
+
+
+
+        <tr>
+          <td>
+            <p>sh</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('sha')"><img src="images/sha.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('shafin')"><img src="images/shafin.png"></a>
+          </td>
+          <td>
+            <p>b</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('ba')"><img src="images/ba.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('bafin')"><img src="images/bafin.png"></a>
+          </td>
+          <td>
+            <p>f</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('fa')"><img src="images/fa.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('fafin')"><img src="images/fafin.png"></a>
+          </td>
+          <td>
+            <p>v</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('va')"><img src="images/va.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('vafin')"><img src="images/vafin.png"></a>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td>
+            <p>th</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('tha')"><img src="images/tha.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('thafin')"><img src="images/thafin.png"></a>
+          </td>
+          <td>
+            <p>eth</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('etha')"><img src="images/etha.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('ethafin')"><img src="images/ethafin.png"></a>
+          </td>
+          <td>
+            <p>c</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('ca')"><img src="images/ca.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('cafin')"><img src="images/cafin.png"></a>
+          </td>
+          <td>
+            <p>j</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('ja')"><img src="images/ja.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('jafin')"><img src="images/jafin.png"></a>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td>
+            <p>x</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('xa')"><img src="images/xa.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('xafin')"><img src="images/xafin.png"></a>
+          </td>
+          <td>
+            <p>h</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('ha')"><img src="images/ha.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('hafin')"><img src="images/hafin.png"></a>
+          </td>
+          <td>
+            <p>r</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('ra')"><img src="images/ra.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('rafin')"><img src="images/rafin.png"></a>
+          </td>
+          <td>
+            <p>L</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('la')"><img src="images/la.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('lafin')"><img src="images/lafin.png"></a>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td>
+            <p>lamda | ly</p>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('lamda')"><img src="images/lamda.png"></a>
+          </td>
+          <td>
+            <a href= "javascript:myFunction('lamdafin')"><img src="images/lamdafin.png"></a>
+          </td>
+          </tr>
+    </div>
+  <div>
+
+
+</body>
