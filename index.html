@@ -83,20 +83,34 @@
         for($i = 0; $i < $txt.length;$i++){
           $wordPairs.push($txt[$i]);
           for($j = 0; $j < $wordPairs[$i].length;$j++){
-            if ($prev == null) {
-              $prev = $wordPairs[$i][$j];
-            } else {
-              if ($wordPairs[$i][$j] == "a" || $wordPairs[$i][$j] =="i" || $wordPairs[$i][$j] == "u") {
-                $charPairs.push($prev + $wordPairs[$i][$j]);
-              } else {
-                  $prev = $wordPairs[$i][$j];
+            if ($wordPairs[$i][$j] == "s" && $wordPairs[$i][$j+1] == "h"){ // must find out if sh is a singular c
+//if vowel before then consonant after (ashta) write sh
+              if (($vowels.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($vowels.includes($wordPairs[$i][$j+3]))) {
+                $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1]);
+                $j++;
+// if vowel after sh and consonant before write sha
+              } else if ($vowels.includes($wordPairs[$i][$j+2]) && $consonants.includes($wordPairs[$i][$j-1])) { // need more checks to ensure risha or (ri s ha) is not identified here as (ri sha)
+                $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1] + $wordPairs[$i][$j+2]);
+                $j+=2;
+              }else {
+                $charPairs.push($wordPairs[$i][$j]);
               }
+// if normal cv pair and dosn't mach above statements push it
+            } else if ($consonants.includes($wordPairs[$i][$j]) && $vowels.includes($wordPairs[$i][$j+1])){
+              $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1]);
+              $j+=1;
+
+// if do not match anything else it must be a singal char cv "(c)" cv
+            } else {
+              $charPairs.push($wordPairs[$i][$j]);
             }
           }
+//when a word is finished push a space
+          $charPairs.push(" ");
         }
-        return $charPairs[0];
 
-      //return an array with the final pairs in order of their final sets "shasfi" = [sha, s, fi]
+//return an array with the final pairs in order of their final sets "shasfi" = [sha, s, fi]
+      console.log($charPairs);
     }
 
 // convert the symbal pairs into the image names and then display them using myFunction()
