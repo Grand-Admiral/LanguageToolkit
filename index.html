@@ -55,13 +55,27 @@
 //convert the pulled txt into the symbal pairs ready for conversion
     function convertTxt($txt) {
       //need a loop to check surrounding characters to see what the symbol will be.
+      $wordPairs = [];
       $charPairs = [];
       $txt = $txt.split(" ");
+      var $prev = null;
       //first [] finds the word second [] is a character.
       // use for loops to then pair the chars and append them to the loop.
       //return $txt[0][0]; //loop through this split. word by word and char by char
+
         for($i = 0; $i < $txt.length;$i++){
-          $charPairs.push($txt[$i]);
+          $wordPairs.push($txt[$i]);
+          for($j = 0; $j < $wordPairs[$i].length;$j++){
+            if ($prev == null) {
+              $prev = $wordPairs[$i][$j];
+            } else {
+              if ($wordPairs[$i][$j] == "a" || $wordPairs[$i][$j] =="i" || $wordPairs[$i][$j] == "u") {
+                $charPairs.push($prev + $wordPairs[$i][$j]);
+              } else {
+                  $prev = $wordPairs[$i][$j];
+              }
+            }
+          }
         }
         return $charPairs[0];
 
