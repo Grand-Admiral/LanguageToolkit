@@ -57,8 +57,25 @@
       //need a loop to check surrounding characters to see what the symbol will be.
       $wordPairs = [];
       $charPairs = [];
+
+      $consonants = [
+      "s","d",
+      "f","g",
+      "h","j",
+      "k","l",
+      "m","n",
+      "b","v",
+      "c","x",
+      "z","q",
+      "w","r",
+      "t","y",
+      "p"];
+
+      $vowels = [
+      'a',
+      'i',
+      'u'];
       $txt = $txt.split(" ");
-      var $prev = null;
       //first [] finds the word second [] is a character.
       // use for loops to then pair the chars and append them to the loop.
       //return $txt[0][0]; //loop through this split. word by word and char by char
