@@ -56,20 +56,37 @@ $txt = $txt.split(" ");
   for($i = 0; $i < $txt.length;$i++){
     $wordPairs.push($txt[$i]);
     for($j = 0; $j < $wordPairs[$i].length;$j++){
-      if ($wordPairs[$i][$j] == "s" && $wordPairs[$i][$j+1] == "h"){ // must find out if the s could be a sh
+
+
+//find out if eth is cv or c. no need for th find or t and h yet as e is never used except for this instance.
+      if ($wordPairs[$i][$j] == "e" && $wordPairs[$i][$j+1] == "t" && $wordPairs[$i][$j+2] == "h"){
+        if (($consonants.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($wordPairs[$i][$j-1] == null &&  $vowels.includes($wordPairs[$i][$j+3]))) { //consonant befor or null it is cv
+          $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1] + $wordPairs[$i][$j+2] + $wordPairs[$i][$j+3]);
+          $j+=3;
+        } else { //it is just a normal c
+          $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1] + $wordPairs[$i][$j+2]);
+          $j+=2;
+        }
+      }
+
+      else if ($wordPairs[$i][$j] == "s" && $wordPairs[$i][$j+1] == "h"){ // must find out if the s could be a sh
 //if vowel before, then consonant after (ashta), write sh
         if (($vowels.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($vowels.includes($wordPairs[$i][$j+3]))) {
           $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1]);
           $j++;
+
+        }
 // if vowel after sh and consonant before write sha
-        } else if ($vowels.includes($wordPairs[$i][$j+2]) && $consonants.includes($wordPairs[$i][$j-1])) {
+        else if (($vowels.includes($wordPairs[$i][$j+2]) && $consonants.includes($wordPairs[$i][$j-1])) ||  ($vowels.includes($wordPairs[$i][$j+2]) && $wordPairs[$i][$j-1] == null) ){
           $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1] + $wordPairs[$i][$j+2]);
           $j+=2;
         } else {
           $charPairs.push($wordPairs[$i][$j]);
         }
+
+      }
 // if normal cv pair and dosn't mach above statements push it
-      } else if ($consonants.includes($wordPairs[$i][$j]) && $vowels.includes($wordPairs[$i][$j+1])){
+      else if ($consonants.includes($wordPairs[$i][$j]) && $vowels.includes($wordPairs[$i][$j+1])){
         $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1]);
         $j+=1;
 
