@@ -5,11 +5,20 @@ function myFunction($value) {
 //converter to symbol from alpha value
 if ($value == "u" || $value == "i"){
   $currentmssg += '<img class="voweli" src=images/'+$value+'.png>';
-} else {
+}
+
+else if ($value == " ") {
+  $currentmssg += '<img src=images/space.png>';
+}
+
+else {
   $currentmssg += '<img src=images/'+$value+'.png>';
 }
 document.getElementById("output").innerHTML = $currentmssg;
 }
+
+
+
 
 function submitTxt() {
 //a = $txt.split(" ")
@@ -118,11 +127,12 @@ $txt = $txt.split(" ");
   }
 
 //return an array with the final pairs in order of their final sets "shasfi" = [sha, s, fi]
-console.log($charPairs);
+//console.log($charPairs);
+translateTxt($charPairs);
 }
 
 // convert the symbal pairs into the image names and then display them using myFunction()
-function translateTxt() {
+function translateTxt($pairs) {
 // everything originally will translate to a ca then have the u||i placed on after
 
 //find if the cv is a,i,u
@@ -130,4 +140,31 @@ function translateTxt() {
 // create an array and place the vowel in the correct spot according to the c. drop if an a.
 
 //run through myFunction($value) and it will append the correct image.
+console.log($pairs);
+  $word = ""; //builds the word until hits a vowel
+  for (i = 0; i < $pairs.length; i++){
+    if ($pairs[i].includes("a") || $pairs[i].includes("i") || $pairs[i].includes("u")){
+      for (j = 0; j <= $pairs[i].length; j++){
+        if ($pairs[i][j] == "a") {
+          $pairs[i] = $word + "a";
+          myFunction($pairs[i]);
+        } else if ($pairs[i][j] == "i") {
+          $pairs[i] = $word+"a";
+          myFunction("i");
+          myFunction($pairs[i]);
+        } else if ($pairs[i][j] == "u") {
+          $pairs[i] = $word + "a";
+          myFunction($pairs[i]);
+          myFunction("u");
+        } else {
+          $word += $pairs[i][j];
+        }
+      }
+      $word = "";
+    } else {
+      myFunction($pairs[i]);
+    }
+
+    console.log($pairs);
+  }
 }
