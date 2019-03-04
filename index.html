@@ -9,21 +9,26 @@
   <div id = "content">
     <!--<button onclick="myFunction()">Click me</button>-->
     <!--<button onclick="saveme()">shoot me</button>-->
-    <h1> Language Writer:</h1>
-    <p id="output">Enter content</p> <!-- output display-->
+    <h1 style="text-align:center;"> Language Writer:</h1>
+    <!-- input form for live translation of characters -->
+    <div id="converter" style="text-align:center;">
+      <form>
+        <input type="text" id = "toconverttxt" name="toConvert">
+        <button type="btnConvertTxt" name="button" onclick="submitTxt()">Convert</button>
+      </form>
+    </div>
+    <!-- display of language -->
+    <p id="output" style="text-align:center;">sa ritka</p> <!-- output display-->
 
     <a href= "javascript:window.print()">print</a>
     </br>
     </br>
-    <div id="converter">
-      <form>
-        <input type="text" id = "toconverttxt" name="toConvert">
-        <button type="btnConvertTxt" name="button" onclick="submitTxt()">Convert</button>
-        <!--<a href= "javascript:getURLParameter('toConvert')">Convert</a>-->
-        <script> window.onload = getURLParameter('toConvert'); </script>
-      </form>
-    </div>
+    </br>
 
+    <!-- load the eng char translator -->
+    <script> window.onload = getURLParameter('toConvert'); </script>
+
+    <!-- manual keyboard -->
     <div id = "keyboard">
       <!-- space and vowel chars-->
       <a href= "javascript:myFunction('space')"><img src="images/space.png"></a>
