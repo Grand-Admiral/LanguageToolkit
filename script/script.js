@@ -69,6 +69,24 @@ $txt = $txt.split(" ");
         }
       }
 
+// find th pairs
+      else if ($wordPairs[$i][$j] == "t" && $wordPairs[$i][$j+1] == "h"){ // must find out if the s could be a sh
+      //if vowel before, then consonant after (ashta), write th
+        if (($vowels.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($vowels.includes($wordPairs[$i][$j+3]))) {
+          $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1]);
+          $j++;
+
+        }
+      // if vowel after th and consonant before write tha
+        else if (($vowels.includes($wordPairs[$i][$j+2]) && $consonants.includes($wordPairs[$i][$j-1])) ||  ($vowels.includes($wordPairs[$i][$j+2]) && $wordPairs[$i][$j-1] == null) ){
+          $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1] + $wordPairs[$i][$j+2]);
+          $j+=2;
+        } else {
+          $charPairs.push($wordPairs[$i][$j]);
+        }
+
+      }
+
       else if ($wordPairs[$i][$j] == "s" && $wordPairs[$i][$j+1] == "h"){ // must find out if the s could be a sh
 //if vowel before, then consonant after (ashta), write sh
         if (($vowels.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($vowels.includes($wordPairs[$i][$j+3]))) {
@@ -107,4 +125,9 @@ console.log($charPairs);
 function translateTxt() {
 // everything originally will translate to a ca then have the u||i placed on after
 
+//find if the cv is a,i,u
+//break down the pair and extract the vowelreplacing it with the a
+// create an array and place the vowel in the correct spot according to the c. drop if an a.
+
+//run through myFunction($value) and it will append the correct image.
 }
