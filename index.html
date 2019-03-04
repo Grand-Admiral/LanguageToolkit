@@ -18,8 +18,9 @@
     <div id="converter">
       <form>
         <input type="text" id = "toconverttxt" name="toConvert">
-        <button type="btnConvertTxt" name="button" onclick="submitTxt()">Submit to checker</button>
-        <a href= "javascript:getURLParameter('toConvert')">Convert</a>
+        <button type="btnConvertTxt" name="button" onclick="submitTxt()">Convert</button>
+        <!--<a href= "javascript:getURLParameter('toConvert')">Convert</a>-->
+        <script> window.onload = getURLParameter('toConvert'); </script>
       </form>
     </div>
 

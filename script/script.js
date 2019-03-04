@@ -11,6 +11,13 @@ else if ($value == " ") {
   $currentmssg += '<img src=images/space.png>';
 }
 
+else if ($value == "ly") {
+  $currentmssg += '<img src=images/lamd.png>';
+}
+else if ($value == "lya") {
+  $currentmssg += '<img src=images/lamda.png>';
+}
+
 else {
   $currentmssg += '<img src=images/'+$value+'.png>';
 }
@@ -78,10 +85,45 @@ $txt = $txt.split(" ");
         }
       }
 
+  // ny pairs
+    else if ($wordPairs[$i][$j] == "n" && $wordPairs[$i][$j+1] == "y"){ // must find out if the s could be a sh
+    //if vowel before, then consonant after (anyta), write th
+      if (($vowels.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($consonants.includes($wordPairs[$i][$j+2])) || $wordPairs[$i][$j+2] == null ) {
+        $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1]);
+        $j++;
+      }
+    // if vowel after th and consonant before write tha
+      else if (($vowels.includes($wordPairs[$i][$j+2]) && $consonants.includes($wordPairs[$i][$j-1])) ||  ($vowels.includes($wordPairs[$i][$j+2]) && $wordPairs[$i][$j-1] == null) ){
+        $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1] + $wordPairs[$i][$j+2]);
+        $j+=2;
+      } else {
+        $charPairs.push($wordPairs[$i][$j]);
+      }
+
+    }
+
+  // ly pairs
+    else if ($wordPairs[$i][$j] == "l" && $wordPairs[$i][$j+1] == "y"){ // must find out if the s could be a sh
+    //if vowel before, then consonant after (ashta), write th
+      if (($vowels.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($consonants.includes($wordPairs[$i][$j+2])) || $wordPairs[$i][$j+2] == null ) {
+        $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1]);
+        $j++;
+
+      }
+    // if vowel after th and consonant before write tha
+      else if (($vowels.includes($wordPairs[$i][$j+2]) && $consonants.includes($wordPairs[$i][$j-1])) ||  ($vowels.includes($wordPairs[$i][$j+2]) && $wordPairs[$i][$j-1] == null) ){
+        $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1] + $wordPairs[$i][$j+2]);
+        $j+=2;
+      } else {
+        $charPairs.push($wordPairs[$i][$j]);
+      }
+
+    }
+
 // find th pairs
       else if ($wordPairs[$i][$j] == "t" && $wordPairs[$i][$j+1] == "h"){ // must find out if the s could be a sh
       //if vowel before, then consonant after (ashta), write th
-        if (($vowels.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($vowels.includes($wordPairs[$i][$j+3]))) {
+        if (($vowels.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($consonants.includes($wordPairs[$i][$j+2])) || $wordPairs[$i][$j+2] == null ) {
           $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1]);
           $j++;
 
@@ -98,7 +140,7 @@ $txt = $txt.split(" ");
 
       else if ($wordPairs[$i][$j] == "s" && $wordPairs[$i][$j+1] == "h"){ // must find out if the s could be a sh
 //if vowel before, then consonant after (ashta), write sh
-        if (($vowels.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($vowels.includes($wordPairs[$i][$j+3]))) {
+        if (($vowels.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($consonants.includes($wordPairs[$i][$j+2])) || $wordPairs[$i][$j+2] == null ) {
           $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1]);
           $j++;
 
