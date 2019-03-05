@@ -64,6 +64,9 @@ $vowels = [
 'a',
 'i',
 'u'];
+
+$numbers = ["1","2","3","4","5","6","7","8","9","0"];
+$numberSubmit = 0;
 $txt = $txt.split(" ");
 //first [] finds the word second [] is a character.
 // use for loops to then pair the chars and append them to the loop.
@@ -73,9 +76,33 @@ $txt = $txt.split(" ");
     $wordPairs.push($txt[$i]);
     for($j = 0; $j < $wordPairs[$i].length;$j++){
 
-
+//if $numbers
+      if ($numbers.includes($wordPairs[$i][$j])) {
+        $x = $j;
+        //find how many chars are numbers in this instance
+        while ($numbers.includes($wordPairs[$i][$x])) {
+          $x++;
+        }
+        //console.log($x);
+        for ($h = 0; $h < $x; $h++) {
+          $numberSubmit += $wordPairs[$i][$j+$h];
+        }
+        //!!!!!!!!!!!!!must break this found number into its smaller components !!!!!!!!!!!!!!!!!!!!!!!
+        console.log(Number($numberSubmit));
+        if ($numberSubmit >= 12) {
+          $times= $numberSubmit / 12;
+          while ($times >= 1) {
+            $charPairs.push("12");
+            $times --
+          }
+          $numberSubmit = $times * 12;
+        }
+        //$charPairs.push($numberSubmit);
+        $j+=$x-1 //once found all numbers for this set go to the last char of this set so the loop can start at the next set
+        //console.log($charPairs); //check that logs the number to convert
+      }
 //find out if eth is cv or c. no need for th find or t and h yet as e is never used except for this instance.
-      if ($wordPairs[$i][$j] == "e" && $wordPairs[$i][$j+1] == "t" && $wordPairs[$i][$j+2] == "h"){
+      else if ($wordPairs[$i][$j] == "e" && $wordPairs[$i][$j+1] == "t" && $wordPairs[$i][$j+2] == "h"){
         if (($consonants.includes($wordPairs[$i][$j-1]) && $vowels.includes($wordPairs[$i][$j+3])) || ($wordPairs[$i][$j-1] == null &&  $vowels.includes($wordPairs[$i][$j+3]))) { //consonant befor or null it is cv
           $charPairs.push($wordPairs[$i][$j] + $wordPairs[$i][$j+1] + $wordPairs[$i][$j+2] + $wordPairs[$i][$j+3]);
           $j+=3;
