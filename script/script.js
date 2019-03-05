@@ -92,14 +92,17 @@ $txt = $txt.split(" ");
         if ($numberSubmit == 0) { // if 0 return 0
           $charPairs.push("0");
         } else {
-          for ($selectNum = 12; $selectNum > 0; $selectNum --) {
+          for ($selectNum = 12; $selectNum >= 1; $selectNum --) {
             if ($numberSubmit >= $selectNum) {
-              $times= $numberSubmit / $selectNum;
+              $times = $numberSubmit / $selectNum; //number of times this number can fit inside the select num
               while ($times >= 1) {
                 $charPairs.push(String($selectNum));
                 $times --
               }
-              $numberSubmit = $times * $selectNum;
+              $numberSubmit = $times * $selectNum; //whatever is left over is magnified and moved on to the next smallest number
+              if ($numberSubmit == 0.9999999999999991) { //catch stupid calculation error
+                $numberSubmit = 1;
+              }
             }
           }
         }
