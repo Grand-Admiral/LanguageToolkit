@@ -89,14 +89,21 @@ $txt = $txt.split(" ");
         }
         //!!!!!!!!!!!!!must break this found number into its smaller components !!!!!!!!!!!!!!!!!!!!!!!
         console.log(Number($numberSubmit));
-        if ($numberSubmit >= 12) {
-          $times= $numberSubmit / 12;
-          while ($times >= 1) {
-            $charPairs.push("12");
-            $times --
+        if ($numberSubmit == 0) { // if 0 return 0
+          $charPairs.push("0");
+        } else {
+          for ($selectNum = 12; $selectNum > 0; $selectNum --) {
+            if ($numberSubmit >= $selectNum) {
+              $times= $numberSubmit / $selectNum;
+              while ($times >= 1) {
+                $charPairs.push(String($selectNum));
+                $times --
+              }
+              $numberSubmit = $times * $selectNum;
+            }
           }
-          $numberSubmit = $times * 12;
         }
+
         //$charPairs.push($numberSubmit);
         $j+=$x-1 //once found all numbers for this set go to the last char of this set so the loop can start at the next set
         //console.log($charPairs); //check that logs the number to convert
