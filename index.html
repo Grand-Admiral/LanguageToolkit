@@ -10,7 +10,14 @@
     <h1 style="text-align:center;"> Language Writer:</h1>
     <!-- input form for live translation of characters -->
     <div id="converter" style="text-align:center;">
-      <form>
+      <h3> Show results on this page:</h3>
+      <form action="index.html">
+        <input type="text" id = "toconverttxt" name="toConvert">
+        <button type="btnConvertTxt" name="button" onclick="submitTxt()">Convert</button>
+      </form>
+
+      <h3> Show results on blank page:</h3>
+      <form action="results.html">
         <input type="text" id = "toconverttxt" name="toConvert">
         <button type="btnConvertTxt" name="button" onclick="submitTxt()">Convert</button>
       </form>
