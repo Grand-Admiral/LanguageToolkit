@@ -67,6 +67,7 @@ $vowels = [
 
 $numbers = ["1","2","3","4","5","6","7","8","9","0"];
 $numberSubmit = 0;
+$txt = $txt.toLowerCase();
 $txt = $txt.split(" ");
 //first [] finds the word second [] is a character.
 // use for loops to then pair the chars and append them to the loop.
