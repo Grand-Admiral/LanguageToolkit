@@ -105,7 +105,7 @@ $txt = $txt.split(" ");
               if ($numberSubmit >= 0.9999999999999991 && $numberSubmit < 1) { //catch stupid calculation error
                 $numberSubmit = 1;
               }
-              console.log("Large: "+$numberSubmit);
+              console.log("Large round check: "+$numberSubmit);
             }
           }
 
@@ -127,7 +127,7 @@ $txt = $txt.split(" ");
               if ($numberSubmit >= 0.9 && $numberSubmit < 1) { //catch stupid calculation error
                 $numberSubmit = 1;
               }
-              console.log("Med: "+ $numberSubmit);
+              console.log("Med round check: "+ $numberSubmit);
             }
           }
 
@@ -141,7 +141,7 @@ $txt = $txt.split(" ");
                 $times --
               }
               $numberSubmit = $times * $selectNum; //whatever is left over is magnified and moved on to the next smallest number
-              console.log("Small: "+ Math.ceil($numberSubmit));
+              console.log("Small round check: "+ Math.ceil($numberSubmit));
             }
           }
         }
