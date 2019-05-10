@@ -93,11 +93,29 @@ $txt = $txt.split(" ");
         if ($numberSubmit == 0) { // if 0 return 0
           $charPairs.push("0");
         } else {
+          $numberSubmit = Math.ceil($numberSubmit);
+          for ($selectNum = 624; $selectNum >= 1; $selectNum -=156) {
+            if ($numberSubmit >= $selectNum) {
+              $times = $numberSubmit / $selectNum; //number of times this number can fit inside the select num
+              while ($times >= 1) {
+                $charPairs.push(String($selectNum));
+                $times --
+              }
+              $numberSubmit = $times * $selectNum; //whatever is left over is magnified and moved on to the next smallest number
+              if ($numberSubmit >= 0.9999999999999991 && $numberSubmit < 1) { //catch stupid calculation error
+                $numberSubmit = 1;
+              }
+              console.log("Large: "+$numberSubmit);
+            }
+          }
+
+
           //groups of 144
           // no idea what the picture will be yet
 
           //groups of 12
           // numbers 12 - 144. This is because there are 3 pillars so 48*3 |||
+          $numberSubmit = Math.ceil($numberSubmit);
           for ($selectNum = 48; $selectNum >= 1; $selectNum -=12) {
             if ($numberSubmit >= $selectNum) {
               $times = $numberSubmit / $selectNum; //number of times this number can fit inside the select num
@@ -106,13 +124,15 @@ $txt = $txt.split(" ");
                 $times --
               }
               $numberSubmit = $times * $selectNum; //whatever is left over is magnified and moved on to the next smallest number
-              if ($numberSubmit == 0.9999999999999991) { //catch stupid calculation error
+              if ($numberSubmit >= 0.9 && $numberSubmit < 1) { //catch stupid calculation error
                 $numberSubmit = 1;
               }
+              console.log("Med: "+ $numberSubmit);
             }
           }
 
           //individual numbers 1-11
+          $numberSubmit = Math.ceil($numberSubmit);
           for ($selectNum = 11; $selectNum >= 1; $selectNum --) {
             if ($numberSubmit >= $selectNum) {
               $times = $numberSubmit / $selectNum; //number of times this number can fit inside the select num
@@ -121,9 +141,7 @@ $txt = $txt.split(" ");
                 $times --
               }
               $numberSubmit = $times * $selectNum; //whatever is left over is magnified and moved on to the next smallest number
-              if ($numberSubmit == 0.9999999999999991) { //catch stupid calculation error
-                $numberSubmit = 1;
-              }
+              console.log("Small: "+ Math.ceil($numberSubmit));
             }
           }
         }
