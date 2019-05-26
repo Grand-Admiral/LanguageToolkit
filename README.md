@@ -8,7 +8,7 @@ In order for this to work you will need a device that can run the html js css fi
 
 <h1> Run:</h1>
 <p> Now you should see a few options on the page: <p>
-- Show results on this page:
-- Show results on blank page:
+<p>- Show results on this page:</p>
+<p>- Show results on blank page:</p>
 
 When you write in english sounding of the text in either of these boxes the translation will appear. However, blank page will open the translation in a new blank page which can be used for printing.
