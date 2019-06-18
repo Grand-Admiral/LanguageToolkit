@@ -1,6 +1,14 @@
 //need array for data entered
 $currentmssg = "";
 
+// eng to language translation dictionary
+var dict = {
+  "a": "ta",
+  "and": "Hak",
+  "are": "shul"
+};
+$vvalue = dict["a"];
+
 function myFunction($value) {
 //converter to symbol from alpha value
 if ($value == "u" || $value == "i"){
