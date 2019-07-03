@@ -1,6 +1,14 @@
 //need array for data entered
 $currentmssg = "";
 
+// eng to language translation dictionary
+var dict = {
+  "a": "ta",
+  "and": "Hak",
+  "are": "shul"
+};
+$vvalue = dict["a"];
+
 function myFunction($value) {
   // check the size for this image set.
   $size = decodeURIComponent((new RegExp('[?|&]' + "size" + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
