@@ -2,24 +2,27 @@
 $currentmssg = "";
 
 function myFunction($value) {
+  // check the size for this image set.
+  $size = decodeURIComponent((new RegExp('[?|&]' + "size" + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+  console.log($size);
 //converter to symbol from alpha value
 if ($value == "u" || $value == "i"){
-  $currentmssg += '<img class="voweli" src=images/'+$value+'.png>';
+  $currentmssg += '<img class="voweli" length="'+$size+'px" width="'+$size+'px" src=images/'+$value+'.png>';
 }
 
 else if ($value == " ") {
-  $currentmssg += '<img src=images/space.png>';
+  $currentmssg += '<img length="'+$size+'px" width="'+$size+'px" src=images/space.png>';
 }
 
 else if ($value == "ly") {
-  $currentmssg += '<img src=images/lamd.png>';
+  $currentmssg += '<img length="'+$size+'px" width="'+$size+'px" src=images/lamd.png>';
 }
 else if ($value == "lya") {
-  $currentmssg += '<img src=images/lamda.png>';
+  $currentmssg += '<img length="'+$size+'px" width="'+$size+'px" src=images/lamda.png>';
 }
 
 else {
-  $currentmssg += '<img src=images/'+$value+'.png>';
+  $currentmssg += '<img length="'+$size+'px" width="'+$size+'px" src=images/'+$value+'.png>';
 }
 document.getElementById("output").innerHTML = $currentmssg;
 }
@@ -32,6 +35,7 @@ function submitTxt() {
 // a[0] list through all chars find "a", "i", "u" and split after them.
 //document.getElementById("converter").submit();
 document.getElementById("toconverttxt").submit();
+document.getElementById("size").submit();
 }
 
 // name = name in input form that is in the url

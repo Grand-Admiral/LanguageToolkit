@@ -12,13 +12,15 @@
     <div id="converter" style="text-align:center;">
       <h3> Show results on this page:</h3>
       <form action="index.html">
-        <input type="text" id = "toconverttxt" name="toConvert">
-        <button type="btnConvertTxt" name="button" onclick="submitTxt()">Convert</button>
+        <input type="text" id = "toconverttxt" name="toConvert" placeholder="Text">
+        <input type="text" id = "size" name="size" placeholder="Text Size">
+        <button type="btnConvertTxt" name="button" onclick="submitTxt()">Convert</button> <!--submit to url-->
       </form>
 
       <h3> Show results on blank page:</h3>
       <form action="results.html">
-        <input type="text" id = "toconverttxt" name="toConvert">
+        <input type="text" id = "toconverttxt" name="toConvert" placeholder="Text">
+        <input type="text" id = "size" name="size" placeholder="Text Size">
         <button type="btnConvertTxt" name="button" onclick="submitTxt()">Convert</button>
       </form>
     </div>
@@ -31,8 +33,9 @@
     </br>
 
     <!-- load the eng char translator -->
-    <script> window.onload = getURLParameter('toConvert'); </script>
-
+    <script>
+      window.onload = getURLParameter('toConvert'); //pull 'toConvert' text section from the url and convert to legible text
+    </script>
     <!-- manual keyboard -->
     <div id = "keyboard">
       <!-- space and vowel chars-->
